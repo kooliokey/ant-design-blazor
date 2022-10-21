@@ -36,7 +36,6 @@ namespace AntDesign
             get => _parent;
             set
             {
-                //Debug.WriteLine($"link:{Title} {GetHashCode()}\tparent:{value.GetHashCode()}");
                 _parent = value;
                 _parent?.Add(this);
             }
@@ -145,6 +144,8 @@ namespace AntDesign
         internal void Activate(bool active)
         {
             Active = active;
+
+            StateHasChanged();
         }
 
         internal async Task<DomRect> GetHrefDom(bool forced = false)

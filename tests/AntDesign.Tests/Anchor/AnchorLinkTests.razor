@@ -1,0 +1,35 @@
+﻿@inherits AntDesignTestBase
+@code {
+    [Fact]
+    public void ItShouldRenderBasicElements()
+    {
+        JSInterop.Mode = JSRuntimeMode.Loose;
+
+        var systemUnderTest = Render<AnchorLink>(
+            @<AnchorLink Href="/potato#potatoAnchor" Title="Potato" />
+    );
+
+        systemUnderTest.MarkupMatches(@"<div class=""ant-anchor-link"" id:ignore>
+            <a title=""Potato"" class=""ant-anchor-link-title"">Potato</a>
+        </div>");
+    }
+
+    [Fact]
+    public async Task ActiveShouldProperlyActivateLink()
+    {
+        JSInterop.Mode = JSRuntimeMode.Loose;
+
+        var systemUnderTest = Render<AnchorLink>(
+            @<AnchorLink Href="/potato#potatoAnchor" Title="Potato" />
+        );
+
+        await systemUnderTest.InvokeAsync(() => systemUnderTest.Instance.Activate(true));
+
+        systemUnderTest.WaitForAssertion(() =>
+        {
+            systemUnderTest.MarkupMatches(@"<div class=""ant-anchor-link ant-anchor-link-active"" id:ignore>
+                <a title=""Potato"" class=""ant-anchor-link-title ant-anchor-link-title-active"">Potato</a>
+            </div>");
+        });
+    }
+}

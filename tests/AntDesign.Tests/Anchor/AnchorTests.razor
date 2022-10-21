@@ -1,0 +1,29 @@
+﻿@inherits AntDesignTestBase
+@code {
+    [Fact]
+    public void ItShouldRenderBasicElements()
+    {
+        JSInterop.Mode = JSRuntimeMode.Loose;
+
+        var systemUnderTest = Render<Anchor>(
+            @<Anchor>
+                <AnchorLink Href="/potato#potatoAnchor" Title="Potato" />
+                <AnchorLink Href="/llama#llamaAnchor" Title="Llama" />
+            </Anchor>
+        );
+
+        systemUnderTest.MarkupMatches(@"<div class=""ant-anchor-wrapper"" style=""max-height: 100vh;"" id:ignore>
+            <div class=""ant-anchor"">
+                <div class=""ant-anchor-ink"">
+                    <span class=""ant-anchor-ink-ball"" style:ignore></span>
+                </div>
+                <div class=""ant-anchor-link"" id:ignore>
+                    <a title=""Potato"" class=""ant-anchor-link-title"">Potato</a>
+                </div>
+                <div class=""ant-anchor-link"" id:ignore>
+                    <a title=""Llama"" class=""ant-anchor-link-title"">Llama</a>
+                </div>
+            </div>
+        </div>");
+    }
+}
