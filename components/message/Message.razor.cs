@@ -64,11 +64,9 @@ namespace AntDesign
 
         #endregion global config
 
-        private readonly List<MessageConfig> _configs
-            = new List<MessageConfig>();
+        private readonly List<MessageConfig> _configs = new();
 
-        private readonly Dictionary<string, MessageConfig> _configDict
-            = new Dictionary<string, MessageConfig>();
+        private readonly Dictionary<string, MessageConfig> _configDict = new();
 
         private Task NotifyAsync(MessageConfig config)
         {
