@@ -42,6 +42,10 @@ jobs:
           npm install
           dotnet build
 
+      - name: Updating Translations
+        run: |
+          git commit -m "Testing actions" --allow-empty
+
       - name: Test 📝
         run: |
           dotnet test ./tests/AntDesign.Tests/AntDesign.Tests.csproj --configuration:Release --collect:"XPlat Code Coverage"
