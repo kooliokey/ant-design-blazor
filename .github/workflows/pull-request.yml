@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        with: 
+         ref: ${{ env.GITHUB_HEAD_REF }}
 
       - name: Updating Translations
         run: |
