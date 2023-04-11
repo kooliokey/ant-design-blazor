@@ -44,6 +44,8 @@ jobs:
 
       - name: Updating Translations
         run: |
+          git config user.email "buildagent@antblazor.com"
+          git config user.name "Build Agent"
           git commit -m "Testing actions" --allow-empty
 
       - name: Test 📝
