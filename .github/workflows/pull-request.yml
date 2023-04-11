@@ -13,6 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Updating Translations
+        run: |
+          git config user.email "buildagent@antblazor.com"
+          git config user.name "Build Agent"
+          git commit -m "Testing actions" --allow-empty
+
       - name: Setup .NET Core 3.1
         uses: actions/setup-dotnet@v1
         with:
@@ -41,12 +47,6 @@ jobs:
         run: |
           npm install
           dotnet build
-
-      - name: Updating Translations
-        run: |
-          git config user.email "buildagent@antblazor.com"
-          git config user.name "Build Agent"
-          git commit -m "Testing actions" --allow-empty
 
       - name: Test 📝
         run: |
