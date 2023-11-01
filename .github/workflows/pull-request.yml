@@ -12,6 +12,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+        with: 
+         ref: ${{ env.GITHUB_HEAD_REF }}
+
+      - name: Updating Translations
+        run: |
+          git config user.email "buildagent@antblazor.com"
+          git config user.name "Build Agent"
+          git commit -m "Testing actions" --allow-empty
 
       - name: Setup .NET Core 3.1
         uses: actions/setup-dotnet@v3
